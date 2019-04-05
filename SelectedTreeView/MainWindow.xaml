@@ -1,0 +1,34 @@
+﻿<Window x:Class="SelectedTreeView.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SelectedTreeView"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <HierarchicalDataTemplate DataType="{x:Type local:FirstMenu}"
+                                  ItemsSource="{Binding Path=SecondMenus}">
+            <CheckBox Content="{Binding Path=Header,Mode=TwoWay}"
+                      IsChecked="{Binding Path=IsChecked,Mode=TwoWay}"></CheckBox>
+
+        </HierarchicalDataTemplate>
+        <HierarchicalDataTemplate DataType="{x:Type local:SecondMenu}" >
+            <CheckBox Content="{Binding Path=Header,Mode=TwoWay}"
+                        IsChecked="{Binding Path=IsChecked,Mode=TwoWay}"></CheckBox>
+        </HierarchicalDataTemplate>
+    </Window.Resources>
+    <Grid>
+        <TreeView HorizontalAlignment="Left" Style="{DynamicResource TreeViewStyle1}">
+            <TreeViewItem x:Name="tree">
+                <TreeViewItem.Header>
+                    <CheckBox Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">全选</CheckBox>
+                </TreeViewItem.Header>
+
+                <!--<TreeViewItem  Header="一级菜单" FontSize="20" Style="{DynamicResource TreeViewItemStyle1}">
+                    <TreeViewItem Header="二级菜单" FontSize="20"></TreeViewItem>
+                </TreeViewItem>-->
+            </TreeViewItem>
+        </TreeView>
+    </Grid>
+</Window>
